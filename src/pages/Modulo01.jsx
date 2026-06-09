@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import Layout from '../components/Layout';
 import CodeBlock from '../components/CodeBlock';
 import ModuleGuard from '../components/ModuleGuard';
+import Quiz from '../components/Quiz';
 
 const code1 = `<code><span class="comment">// Crear una carpeta para tus proyectos</span>
 mkdir MisProyectosCSharp
@@ -54,6 +55,21 @@ const code4 = `<code><span class="keyword">using</span> System;
         Console.<span class="method">WriteLine</span>(<span class="string">$"Resultado: {numero1} + {numero2} = {resultado}"</span>);
     }
 }</code>`;
+
+const quizQuestions = [
+  {
+    question: '1. ¿Qué método usamos en C# para mostrar texto en la consola?',
+    check: (a) => a.includes('console.writeline') || a.includes('writeline') || a.includes('console.write'),
+  },
+  {
+    question: '2. ¿Qué comando crea un proyecto de consola con dotnet?',
+    check: (a) => a.includes('dotnet new console') || a.includes('dotnet new'),
+  },
+  {
+    question: '3. ¿Qué comando ejecutas para correr el proyecto?',
+    check: (a) => a.includes('dotnet run'),
+  },
+];
 
 export default function Modulo01() {
   return (
@@ -210,6 +226,8 @@ export default function Modulo01() {
             <li>✅ Convertir texto a números con <code>int.Parse()</code></li>
           </ul>
         </div>
+
+        <Quiz moduleNum={1} questions={quizQuestions} />
 
         <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '2rem' }}>
           <Link to="/" className="btn btn-secondary">← Volver al índice</Link>

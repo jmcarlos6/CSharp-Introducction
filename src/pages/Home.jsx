@@ -21,6 +21,7 @@ export default function Home() {
   const [codeInput, setCodeInput] = useState('');
   const [codeError, setCodeError] = useState('');
   const [showCodeForm, setShowCodeForm] = useState(false);
+  const [showTooltip, setShowTooltip] = useState(false);
 
   const handleStartCourse = () => {
     if (courseUnlocked) {
@@ -102,7 +103,44 @@ export default function Home() {
 
         {showCodeForm && (
           <div className="container">
-            <h2>🔐 Ingresa el código de acceso</h2>
+            <h2 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              🔐 Ingresa el código de acceso
+              <span
+                style={{ position: 'relative', cursor: 'pointer' }}
+                onMouseEnter={() => setShowTooltip(true)}
+                onMouseLeave={() => setShowTooltip(false)}
+                onClick={() => setShowTooltip(!showTooltip)}
+              >
+                <span style={{ fontSize: '0.7em', background: '#6366f1', color: '#fff', borderRadius: '50%', width: '22px', height: '22px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>?</span>
+                {showTooltip && (
+                  <span style={{
+                    position: 'absolute',
+                    bottom: '130%',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    background: '#1f2937',
+                    color: '#fff',
+                    padding: '0.6rem 1rem',
+                    borderRadius: '8px',
+                    fontSize: '0.85rem',
+                    whiteSpace: 'nowrap',
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+                    zIndex: 10,
+                  }}>
+                    El código de acceso solicítelo a su instructor o quien le ha compartido el curso
+                    <span style={{
+                      position: 'absolute',
+                      top: '100%',
+                      left: '50%',
+                      transform: 'translateX(-50%)',
+                      borderWidth: '6px',
+                      borderStyle: 'solid',
+                      borderColor: '#1f2937 transparent transparent transparent',
+                    }} />
+                  </span>
+                )}
+              </span>
+            </h2>
             <input
               type="text"
               placeholder="Código de seguridad"

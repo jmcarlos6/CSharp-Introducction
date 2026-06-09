@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import Layout from '../components/Layout';
 import CodeBlock from '../components/CodeBlock';
 import ModuleGuard from '../components/ModuleGuard';
+import Quiz from '../components/Quiz';
 
 const codeIf = `<code><span class="keyword">int</span> edad = <span class="number">20</span>;
 <span class="keyword">if</span> (edad &gt;= <span class="number">18</span>)
@@ -87,6 +88,22 @@ const codeBreak = `<code><span class="comment">// BREAK - Sale del bucle</span>
     Console.<span class="method">WriteLine</span>(i);  <span class="comment">// Solo impares</span>
 }</code>`;
 
+
+const quizQuestions = [
+  {
+    question: '1. ¿Qué estructura usarías para elegir entre múltiples caminos según el valor de una variable?',
+    check: (a) => a.includes('switch') || a.includes('if'),
+  },
+  {
+    question: '2. ¿Qué bucle recorre una colección elemento a elemento?',
+    check: (a) => a.includes('foreach') || a.includes('for each') || a.includes('for'),
+  },
+  {
+    question: '3. ¿Cómo escribirías la condición para ejecutar código cuando x sea mayor que 10?',
+    check: (a) => a.includes('> 10') || a.includes('>10') || a.includes('mayor que 10') || a.includes('>'),
+  },
+];
+
 export default function Modulo03() {
   return (
     <ModuleGuard moduleNum={3}>
@@ -167,6 +184,8 @@ export default function Modulo03() {
             </tbody>
           </table>
         </div>
+
+        <Quiz moduleNum={3} questions={quizQuestions} />
 
         <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '2rem' }}>
           <Link to="/modulo-02" className="btn btn-secondary">← Anterior: Fundamentos</Link>

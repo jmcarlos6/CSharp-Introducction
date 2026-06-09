@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import Layout from '../components/Layout';
 import CodeBlock from '../components/CodeBlock';
 import ModuleGuard from '../components/ModuleGuard';
+import Quiz from '../components/Quiz';
 
 const codeDeclaracion = `<code><span class="comment">// Sintaxis: tipo nombreVariable = valor;</span>
 <span class="keyword">int</span> edad = <span class="number">25</span>;
@@ -76,6 +77,21 @@ const codeIMC = `<code><span class="keyword">using</span> System;
         Console.<span class="method">WriteLine</span>(<span class="string">$"Tu IMC es: {imc:F2}"</span>);
     }
 }</code>`;
+
+const quizQuestions = [
+  {
+    question: '1. ¿Qué palabra clave se usa para texto en C#?',
+    check: (a) => a.includes('string'),
+  },
+  {
+    question: '2. ¿Qué tipo se usa normalmente para enteros?',
+    check: (a) => a.includes('int') || a.includes('entero'),
+  },
+  {
+    question: '3. ¿Qué operador se usa comúnmente para concatenar strings?',
+    check: (a) => a.includes('+') || a.includes('interpol') || a.includes('$"'),
+  },
+];
 
 export default function Modulo02() {
   return (
@@ -182,6 +198,8 @@ export default function Modulo02() {
             </tbody>
           </table>
         </div>
+
+        <Quiz moduleNum={2} questions={quizQuestions} />
 
         <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '2rem' }}>
           <Link to="/modulo-01" className="btn btn-secondary">← Anterior: Introducción</Link>
